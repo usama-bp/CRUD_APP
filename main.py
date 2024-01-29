@@ -5,13 +5,19 @@ from Database import start_db_client,shutdown_db_client
 from tortoise.contrib.pydantic import pydantic_model_creator
 from tortoise.exceptions import DoesNotExist
 from passlib.context import CryptContext
-from dotenv import load_dotenv    
-
-
 from app.models import User_s,createUser
+from dotenv import load_dotenv    
+import os
 
 
-# database_url=load_dotenv("DATABASE_URL")    
+load_dotenv()
+
+database_url=os.getenv("DATABSEURL")
+
+
+
+
+   
 
 User_Pydantic=pydantic_model_creator(User_s)
 
@@ -138,7 +144,7 @@ async def deleteuser(user_id:int):
 
 register_tortoise(
       app,
-      db_url='postgres://usamarehman:admin@localhost:5432/usamarehman',
+      db_url=database_url,
     modules={'models': ['app.models']},
         
     generate_schemas=True,

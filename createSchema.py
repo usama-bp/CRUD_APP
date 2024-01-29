@@ -1,7 +1,9 @@
 from tortoise import Tortoise,run_async
 from Database import start_db_client
+from dotenv import load_dotenv
+import os
 
-
+load_dotenv()
 
 
 
